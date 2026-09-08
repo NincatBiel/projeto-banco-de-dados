@@ -1,0 +1,12 @@
+-- consultas com animais, veterinarios e os respectivos donos
+-- mesma coisa da anterior só que só as que consulta.status ta como "a ser realizadas"
+-- historico do animal, com o animal e as doenças que ele teve anteriormente, ordenando por animal.nome e contendo diagnostico e data da consulta (onde indica quando o diagnostico afoi feito)
+-- relação de clientes e quantidade de vezes que trouxeram os animais?
+-- relação de veterinarios e suas respectivas especialidades - erik
+-- consulta + valor final
+-- quantidade de consultas canceladas? sla como se faria isso
+-- servico mais caro e servico mais barato 
+-- procedimento mais caro e procedimento mais barato 
+-- medicamento mais caro e medicamento mais barato 
+-- relação de serviços - erik
+-- relação de procedimentos

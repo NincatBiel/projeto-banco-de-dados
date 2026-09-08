@@ -1,4 +1,4 @@
-CREATE DATABASE clinica_veterinaria;
+CREATE DATABASE IF NOT EXISTS clinica_veterinaria;
 USE clinica_veterinaria;
 -- ============
 -- = Cadastro =

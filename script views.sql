@@ -37,25 +37,31 @@ SELECT
     COUNT(c.consulta_id) AS quantidade_consultas
 FROM tb_cliente cli
 INNER JOIN tb_animal a
-    ON d.dono_id = a.dono_id
+    ON cli.cliente_id = a.fk_cliente_id
 INNER JOIN tb_consulta c
     ON a.animal_id = c.animal_id
 GROUP BY cli.cliente_id, cli.nome
 ORDER BY quantidade_consultas DESC;
 
 -- relação de veterinarios e suas respectivas especialidades - erik
-
+SELECT 
+    v.nome AS veterinario,
+    e.nome AS especialidade
+FROM vet_especialidade ve
+JOIN veterinario v ON v.id_veterinario = ve.id_veterinario
+JOIN especialidade e ON e.id_especialidade = ve.id_especialidade
+ORDER BY v.nome, e.nome;
 -- consulta + valor final - Ainda falta ajeitar
 SELECT
     c.consulta_id,
-    a.nome AS animal,
-    d.nome AS dono,
+    a.nome AS 'Animal',
+    cli.nome AS 'Dono',
     c.data_consulta,
-    c.valor AS valor_final
+    c.valor AS 'valor_final'
 FROM tb_consulta c
 INNER JOIN tb_animal a
     ON c.animal_id = a.animal_id
-INNER JOIN dono d
+INNER JOIN tb_cliente cli
     ON a.dono_id = d.dono_id
 ORDER BY c.data_consulta;
 
@@ -77,7 +83,11 @@ MAX(preco) AS 'MAIS CARO',
 MIN(preco) AS 'MAIS BARATO'
 FROM medicamento;
 -- relação de serviços - erik
-
+SELECT 
+nome AS 'Serviço', 
+descricao AS 'Descrição', 
+valor AS 'Valor' 
+FROM tb_servico;
 -- relação de procedimentos
 
 -- quantidade de consultas por cliente

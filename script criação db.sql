@@ -97,7 +97,7 @@ CREATE TABLE tb_diagnostico(
 diagnostico_id INT PRIMARY KEY AUTO_INCREMENT,
 diagnostico VARCHAR(300),
 fk_consulta_id INT NOT NULL,
-CONSTRAINT fk_consulta_diagnostico FOREIGN KEY (fk_consulta_id) REFERENCES consulta(consulta_id)
+CONSTRAINT fk_consulta_diagnostico FOREIGN KEY (fk_consulta_id) REFERENCES tb_consulta(consulta_id)
 );
 
 -- FK de procedimento em procedimento_realizado ta como procedimento_proced_realizado

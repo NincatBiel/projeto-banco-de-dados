@@ -5,14 +5,14 @@ SELECT
     cli.nome AS 'Dono',
     v.nome AS 'Veterinario',
     c.data_consulta AS 'Data da consulta'
-FROM consulta c
-INNER JOIN animal a
+FROM tb_consulta c
+INNER JOIN tb_animal a
     ON c.fk_animal_id = a.animal_id
-INNER JOIN cliente cli
+INNER JOIN tb_cliente cli
     ON a.fk_cliente_id = cli.cliente_id
-INNER JOIN veterinario v
+INNER JOIN tb_veterinario v
     ON c.veterinario_id = v.veterinario_id
-INNER JOIN especie e
+INNER JOIN tb_especie e
     ON a.fk_especie_id = e.especie_id
 ORDER BY c.data_consulta DESC;
 
@@ -23,10 +23,10 @@ SELECT
     a.nome AS 'Animal',
     d.diagnostico AS 'Diagnostico',
     c.data_consulta AS 'Data da consulta'
-FROM consulta c
+FROM tb_consulta c
 INNER JOIN animal a
     ON c.animal_id = a.animal_id
-LEFT JOIN diagnostico d
+LEFT JOIN tb_diagnostico d
 ON d.fk_consulta_id = c.consulta_id
 WHERE d.diagnostico IS NOT NULL
 ORDER BY a.nome ASC;
@@ -35,10 +35,10 @@ ORDER BY a.nome ASC;
 SELECT
     cli.nome AS 'Dono',
     COUNT(c.consulta_id) AS quantidade_consultas
-FROM cliente cli
-INNER JOIN animal a
+FROM tb_cliente cli
+INNER JOIN tb_animal a
     ON d.dono_id = a.dono_id
-INNER JOIN consulta c
+INNER JOIN tb_consulta c
     ON a.animal_id = c.animal_id
 GROUP BY cli.cliente_id, cli.nome
 ORDER BY quantidade_consultas DESC;
@@ -52,8 +52,8 @@ SELECT
     d.nome AS dono,
     c.data_consulta,
     c.valor AS valor_final
-FROM consulta c
-INNER JOIN animal a
+FROM tb_consulta c
+INNER JOIN tb_animal a
     ON c.animal_id = a.animal_id
 INNER JOIN dono d
     ON a.dono_id = d.dono_id

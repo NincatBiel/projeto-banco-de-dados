@@ -71,3 +71,54 @@ FROM servico;
 -- relação de serviços - erik
 
 -- relação de procedimentos
+
+-- quantidade de consultas por cliente
+
+SELECT 
+cli.cliente_id AS 'Cliente',
+COUNT(c.consulta_id) AS 'Quantidade de Consultas'
+FROM cliente cli
+INNER JOIN animal a
+on cli.cliente_id = a.fk_cliente_id
+INNER JOIN consulta c
+ON a.animal_id = c.fk_animal_id
+GROUP BY cli.cliente_id
+ORDER BY 'Quantidade de Consultas' DESC;
+
+-- quantidade de consultas canceladas (ta dando errado n sei pq)
+SELECT (*) AS 'Quantidade de Consultas Canceladas'
+FROM consulta
+WHERE status = 'cancelada';
+
+-- procedimento mais caro e mais barato(subconsulta)
+
+SELECT nome AS 'Procedimento',
+preco AS 'Preço'
+FROM procedimento
+WHERE preco = (SELECT MAX(preco) FROM procedimento)
+OR preco = (SELECT MIN(preco) FROM procedimento);
+
+-- consulta mais o valor final
+
+SELECT
+c.consulta_id AS 'Consulta',
+a.nome AS 'animal',
+c.data_hora AS 'Data da Consulta',
+v.total AS 'Valor Final'
+FROM consulta c
+INNER JOIN animal a
+ON c.fk_animal_id = a.animal_id
+INNER JOIN valor v
+ON c.consulta_id = v.fk_consulta_id
+ORDER BY c.data_hora;
+
+-- medicamento mais caro e mais barato
+
+SELECT
+nome AS 'Medicamento',
+preco AS 'Preço'
+FROM medicamento
+WHERE preco = (SELECT MAX(preco) FROM medicamento)
+OR preco = (SELECT MIN(preco) FROM medicamento);
+
+

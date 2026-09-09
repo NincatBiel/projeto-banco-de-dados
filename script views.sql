@@ -1,17 +1,19 @@
 -- consultas com animais, veterinarios e os respectivos donos
 SELECT
     a.nome AS 'Animal',
-    a.especie AS 'Espécie',
+    e.nome AS 'Espécie',
     cli.nome AS 'Dono',
     v.nome AS 'Veterinario',
     c.data_consulta AS 'Data da consulta'
 FROM consulta c
 INNER JOIN animal a
-    ON c.animal_id = a.animal_id
+    ON c.fk_animal_id = a.animal_id
 INNER JOIN cliente cli
     ON a.fk_cliente_id = cli.cliente_id
 INNER JOIN veterinario v
     ON c.veterinario_id = v.veterinario_id
+INNER JOIN especie e
+    ON a.fk_especie_id = e.especie_id
 ORDER BY c.data_consulta DESC;
 
 -- mesma coisa da anterior só que só as que consulta.status ta como "a ser realizadas"

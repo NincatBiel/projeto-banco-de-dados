@@ -66,10 +66,16 @@ SELECT
     MAX(valor) AS servico_mais_caro,
     MIN(valor) AS servico_mais_barato
 FROM servico;
--- procedimento mais caro e procedimento mais barato 
-
--- medicamento mais caro e medicamento mais barato 
-
+-- procedimento mais caro e procedimento mais barato  at
+SELECT 
+MAX(preco) AS 'MAIS CARO',
+MIN(preco) AS 'MAIS BARATO'
+FROM procedimento;
+-- medicamento mais caro e medicamento mais barato art
+SELECT 
+MAX(preco) AS 'MAIS CARO',
+MIN(preco) AS 'MAIS BARATO'
+FROM medicamento;
 -- relação de serviços - erik
 
 -- relação de procedimentos
@@ -87,10 +93,11 @@ ON a.animal_id = c.fk_animal_id
 GROUP BY cli.cliente_id
 ORDER BY 'Quantidade de Consultas' DESC;
 
--- quantidade de consultas canceladas (ta dando errado n sei pq)
-SELECT (*) AS 'Quantidade de Consultas Canceladas'
+-- quantidade de consultas canceladas (ta dando errado n sei pq) art
+SELECT
+ COUNT(*) AS 'CONSULTAS CANCELADAS'
 FROM consulta
-WHERE status = 'cancelada';
+WHERE status = "CANCELADO";
 
 -- procedimento mais caro e mais barato(subconsulta)
 

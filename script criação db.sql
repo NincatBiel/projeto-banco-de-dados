@@ -144,7 +144,7 @@ CONSTRAINT fk_servico_valor FOREIGN KEY (fk_servico_id) REFERENCES servico(servi
 
 CREATE TABLE pagamento(
 pagamento_id INT PRIMARY KEY AUTO_INCREMENT,
-modo ENUM('Cartão de crédito', 'Boleto', 'Dinheiro'),
+modo ENUM('Cartão de crédito', 'Boleto', 'A vista'),
 fk_cliente_id INT NOT NULL,
 fk_valor_id INT NOT NULL,
 CONSTRAINT fk_cliente_pagamento FOREIGN KEY (fk_cliente_id) REFERENCES cliente(cliente_id),

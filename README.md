@@ -35,9 +35,6 @@ RF016 — Registrar pagamentos.
 RF017 — Consultar histórico clínico do animal.
 RF018 — Consultar informações financeiras da clínica.
 
-Requisitos Não-Funcionais:
-RNF001 - 
-
 Regras de Negócio:
 RN001 — Um cliente pode possuir vários animais.
 RN002 — Um animal pertence a apenas um cliente.
@@ -55,3 +52,6 @@ RN013 — Uma consulta cancelada não deverá gerar cobrança de procedimento.
 RN014 — O histórico de um animal deverá preservar os atendimentos realizados anteriormente.
 RN015 — Uma consullta só pode gerar um valor final
 RN016 — Um valor final deve ser gerado a partir de uma consulta e de um serviço
+
+Como criar o banco: acesse script criação db.sql
+Como inserir dados: acesse script inserts.sql

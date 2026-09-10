@@ -1,5 +1,6 @@
 # projeto-banco-de-dados
 Nome do projeto: Clínica Veterinária
+Link de apresentação: https://canva.link/whphkb3l40kmatf
 
 Descrição: Criação de um banco de dados destinado a uma clínica veterinária, onde relaciona clientes, animais, veterinarios, consultas, serviços, medicamentos e pagamentos com geração automática de cobrança
 

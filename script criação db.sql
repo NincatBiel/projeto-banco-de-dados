@@ -51,7 +51,6 @@ CREATE TABLE tb_especialidade (
 );
 
 CREATE TABLE tb_vet_especialidade (
-	vet_especialidade_id INT PRIMARY KEY AUTO_INCREMENT,
 	fk_veterinario_id INT NOT NULL,
 	fk_especialidade_id INT NOT NULL,
 	CONSTRAINT fk_veterinario_vet_especialidade FOREIGN KEY (fk_veterinario_id) REFERENCES tb_veterinario(veterinario_id),

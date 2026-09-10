@@ -45,4 +45,15 @@ END //
 
 -- CALL historico_animal('');
 
+-- Adicionar diagnóstico
+DELIMITER //
+CREATE PROCEDURE sp_add_diagnostico(
+IN diagnostico VARCHAR(100),
+IN consulta_id INT)
+BEGIN
+INSERT INTO tb_diagnostico(diagnostico, fk_consulta_id)
+VALUES (diagnostico, consulta_id);
+END //
+
+
 DELIMITER ;

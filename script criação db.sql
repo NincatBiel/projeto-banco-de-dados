@@ -53,6 +53,7 @@ CREATE TABLE tb_especialidade (
 CREATE TABLE tb_vet_especialidade (
 	fk_veterinario_id INT NOT NULL,
 	fk_especialidade_id INT NOT NULL,
+	PRIMARY KEY (fk_veterinario_id, fk_especialidade_id),
 	CONSTRAINT fk_veterinario_vet_especialidade FOREIGN KEY (fk_veterinario_id) REFERENCES tb_veterinario(veterinario_id),
 	CONSTRAINT fk_especialidade_vet_especialidade FOREIGN KEY (fk_especialidade_id) REFERENCES tb_especialidade(especialidade_id)
 );

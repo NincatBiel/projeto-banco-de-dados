@@ -106,7 +106,7 @@ INNER JOIN animal a
 on cli.cliente_id = a.fk_cliente_id
 INNER JOIN consulta c
 ON a.animal_id = c.fk_animal_id
-GROUP BY cli.nome, cli cli.cliente_id
+GROUP BY cli.nome, cli.cliente_id
 ORDER BY 'Quantidade de Consultas' DESC;
 
 -- quantidade de consultas canceladas (ta dando errado n sei pq) art

@@ -1,3 +1,4 @@
+-- Views
 -- consultas com animais, veterinarios e os respectivos donos
 -- use clinica_veterinaria;
 CREATE VIEW vw_consulta_animal AS
@@ -36,7 +37,7 @@ INNER JOIN tb_especie e
     ON a.fk_especie_id = e.especie_id
 WHERE c.status = 'Marcada';
 
--- historico do animal, com o animal e as doenças que ele teve anteriormente, ordenando por animal.nome e contendo diagnostico e data da consulta (onde indica quando o diagnostico afoi feito)
+-- historico do animal, com o animal e as doenças que ele teve anteriormente, ordenando por animal.nome e contendo diagnostico e data da consulta (onde indica quando o diagnostico foi feito)
 CREATE VIEW vw_historico_animais_doencas AS
 SELECT
     a.nome AS 'Animal',
@@ -50,6 +51,35 @@ ON d.fk_consulta_id = c.consulta_id
 WHERE d.diagnostico IS NOT NULL
 ORDER BY a.nome ASC;
 
+-- relação de serviços - erik
+CREATE VIEW vw_servicos AS
+SELECT 
+nome AS 'Serviço', 
+descricao AS 'Descrição', 
+valor AS 'Valor' 
+FROM tb_servico;
+
+-- relação de procedimentos
+CREATE VIEW vw_procedimentos AS
+SELECT 
+nome AS 'Procedimento', 
+descricao AS 'Descrição', 
+preco AS 'Valor' 
+FROM tb_procedimento;
+
+-- relação de veterinarios e suas respectivas especialidades - erik
+CREATE VIEW vw_veterinario_especialidades AS
+SELECT
+    v.nome AS veterinario,
+    e.nome AS especialidade
+FROM tb_vet_especialidade ve
+INNER JOIN tb_veterinario v ON v.veterinario_id = ve.fk_veterinario_id
+INNER JOIN tb_especialidade e ON e.especialidade_id = ve.fk_especialidade_id
+ORDER BY v.nome, e.nome;
+
+-- ===========================================
+
+-- Selects comuns
 -- relação de clientes e quantidade de vezes que trouxeram os animais
 SELECT
     cli.nome AS 'Dono',
@@ -61,16 +91,6 @@ INNER JOIN tb_consulta c
     ON a.animal_id = c.animal_id
 GROUP BY cli.cliente_id, cli.nome
 ORDER BY 'Quantidade de vezes' DESC;
-
--- relação de veterinarios e suas respectivas especialidades - erik
-CREATE VIEW vw_veterinario_especialidades AS
-SELECT
-    v.nome AS veterinario,
-    e.nome AS especialidade
-FROM tb_vet_especialidade ve
-INNER JOIN tb_veterinario v ON v.veterinario_id = ve.fk_veterinario_id
-INNER JOIN tb_especialidade e ON e.especialidade_id = ve.fk_especialidade_id
-ORDER BY v.nome, e.nome;
 
 -- consulta + valor final
 SELECT
@@ -115,24 +135,7 @@ FROM tb_medicamento
 WHERE preco = (SELECT MAX(preco) FROM medicamento)
 OR preco = (SELECT MIN(preco) FROM medicamento);
 
--- relação de serviços - erik
-CREATE VIEW vw_servicos AS
-SELECT 
-nome AS 'Serviço', 
-descricao AS 'Descrição', 
-valor AS 'Valor' 
-FROM tb_servico;
-
--- relação de procedimentos
-CREATE VIEW vw_procedimentos AS
-SELECT 
-nome AS 'Procedimento', 
-descricao AS 'Descrição', 
-preco AS 'Valor' 
-FROM tb_procedimento;
-
-
--- quantidade de consultas canceladas (ta dando errado n sei pq) art
+-- quantidade de consultas canceladas art
 SELECT
  COUNT(*) AS 'Consultas canceladas'
 FROM tb_consulta

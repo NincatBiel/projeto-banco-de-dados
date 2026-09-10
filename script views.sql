@@ -6,17 +6,17 @@ SELECT
     e.nome AS 'Espécie',
     cli.nome AS 'Dono',
     v.nome AS 'Veterinario',
-    c.data_consulta AS 'Data da consulta'
+    c.data_hora AS 'Data da consulta'
 FROM tb_consulta c
 INNER JOIN tb_animal a
     ON c.fk_animal_id = a.animal_id
 INNER JOIN tb_cliente cli
     ON a.fk_cliente_id = cli.cliente_id
 INNER JOIN tb_veterinario v
-    ON c.veterinario_id = v.veterinario_id
+    ON c.fk_veterinario_id = v.veterinario_id
 INNER JOIN tb_especie e
     ON a.fk_especie_id = e.especie_id
-ORDER BY c.data_consulta DESC;
+ORDER BY c.data_hora DESC;
 
 -- mesma coisa da anterior só que só as que consulta.status ta como "a ser realizadas"
 SELECT COUNT(*) AS 'CONSULTAS REALIZADAS'

@@ -10,7 +10,7 @@ CREATE PROCEDURE sp_cadastrar_cliente(
         VALUES (@nome, @telefone, @email, @cpf);
     END //
 
-EXEC sp_cadastrar_cliente @nome = /*insira o nome*/, @telefone = /*insira o telefone*/, @email = /*insira o email*/, @cpf = /*insira o cpf*/;
+CALL sp_cadastrar_cliente(/*insira o nome*/, /*insira o telefone*/, /*insira o email*/, /*insira o cpf*/);
 -- inserir um animal novo
 
 -- agendar consulta nova

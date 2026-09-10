@@ -1,4 +1,6 @@
 -- consultas com animais, veterinarios e os respectivos donos
+
+
 SELECT
     a.nome AS 'Animal',
     e.nome AS 'Espécie',
@@ -67,7 +69,7 @@ INNER JOIN tb_cliente cli
     ON a.dono_id = d.dono_id
 ORDER BY c.data_consulta;
 
--- quantidade de consultas canceladas? sla como se faria isso feito.
+-- quantidade de consultas canceladas? sla como se faria isso, feito.
 
 -- servico mais caro e servico mais barato - Ainda falta ajeitar
 SELECT
@@ -91,18 +93,20 @@ descricao AS 'Descrição',
 valor AS 'Valor' 
 FROM tb_servico;
 -- relação de procedimentos
-
+SELECT *
+FROM procedimento;
 -- quantidade de consultas por cliente
 
 SELECT 
 cli.cliente_id AS 'Cliente',
+cli.nome as 'Nome',
 COUNT(c.consulta_id) AS 'Quantidade de Consultas'
 FROM cliente cli
 INNER JOIN animal a
 on cli.cliente_id = a.fk_cliente_id
 INNER JOIN consulta c
 ON a.animal_id = c.fk_animal_id
-GROUP BY cli.cliente_id
+GROUP BY cli.nome, cli cli.cliente_id
 ORDER BY 'Quantidade de Consultas' DESC;
 
 -- quantidade de consultas canceladas (ta dando errado n sei pq) art

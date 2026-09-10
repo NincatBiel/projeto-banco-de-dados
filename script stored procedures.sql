@@ -55,5 +55,15 @@ INSERT INTO tb_diagnostico(diagnostico, fk_consulta_id)
 VALUES (diagnostico, consulta_id);
 END //
 
+-- Adicionar prescricao
+DELIMITER //
+CREATE PROCEDURE sp_add_prescricao(
+IN prescricao VARCHAR(250),
+IN consulta_id INT)
+BEGIN
+INSERT INTO tb_prescricao(observacao, fk_consulta_id)
+VALUES (prescricao, consulta_id);
+END //
+
 
 DELIMITER ;

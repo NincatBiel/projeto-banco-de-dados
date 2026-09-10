@@ -1,0 +1,10 @@
+-- admin
+CREATE USER 'administrador'@'localhost IDENTIFIED BY 'admin123';
+
+GRANT ALL ON clinica_veterinaria.* TO 'administrador'@'localhost';
+
+-- Atendente
+
+CREATE USER 'atendente'@'localhost' IDENTIFIED BY 'atendente123';
+
+GRANT 

@@ -17,7 +17,9 @@ INNER JOIN tb_especie e
 ORDER BY c.data_consulta DESC;
 
 -- mesma coisa da anterior só que só as que consulta.status ta como "a ser realizadas"
-
+SELECT COUNT(*) AS 'CONSULTAS REALIZADAS'
+FROM consulta
+WHERE status = 'realizadas';
 -- historico do animal, com o animal e as doenças que ele teve anteriormente, ordenando por animal.nome e contendo diagnostico e data da consulta (onde indica quando o diagnostico afoi feito)
 SELECT
     a.nome AS 'Animal',
@@ -65,7 +67,7 @@ INNER JOIN tb_cliente cli
     ON a.dono_id = d.dono_id
 ORDER BY c.data_consulta;
 
--- quantidade de consultas canceladas? sla como se faria isso
+-- quantidade de consultas canceladas? sla como se faria isso feito.
 
 -- servico mais caro e servico mais barato - Ainda falta ajeitar
 SELECT

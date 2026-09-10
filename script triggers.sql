@@ -5,7 +5,7 @@ delimiter //
 
 DELIMITER //
 CREATE TRIGGER calcular_valor
-BEFORE INSERT ON valor
+AFTER INSERT ON valor
 FOR EACH ROW
 BEGIN
 SET NEW.subtotal = (SELECT preco

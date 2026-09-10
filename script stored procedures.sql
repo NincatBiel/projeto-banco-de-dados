@@ -10,14 +10,12 @@ CREATE PROCEDURE sp_cadastrar_cliente(
         VALUES (@nome, @telefone, @email, @cpf);
     END //
 
-CALL sp_cadastrar_cliente(/*insira o nome*/, /*insira o telefone*/, /*insira o email*/, /*insira o cpf*/);
+-- CALL sp_cadastrar_cliente(/*insira o nome*/, /*insira o telefone*/, /*insira o email*/, /*insira o cpf*/);
 -- inserir um animal novo
 
 -- agendar consulta nova
 
 -- historico de um animal especifico
-DELIMITER //
-
 CREATE PROCEDURE historico_animal(IN animal_nome VARCHAR(20))
 BEGIN
     SELECT
@@ -34,8 +32,6 @@ BEGIN
     ORDER BY c.data_hora DESC;
 END //
 
-DELIMITER ;
-
-CALL historico_animal('');
+-- CALL historico_animal('');
 
 DELIMITER ;

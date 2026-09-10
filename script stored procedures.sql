@@ -11,37 +11,20 @@ CREATE PROCEDURE sp_cadastrar_cliente(
     END //
 
 -- CALL sp_cadastrar_cliente(/*insira o nome*/, /*insira o telefone*/, /*insira o email*/, /*insira o cpf*/);
-        CALL sp_cadastrar_cliente();
 -- inserir um animal novo
 
-CREATE PROCEDURE sp_cadastrar_animal(
-    IN nome VARCHAR(20),
-    IN p_data_nasc DATE,
-    IN p_sexo ENUM('Macho', 'Fêmea'),
-    IN p_cliente_id INT,
-    IN p_especie_id INT,
-    IN p_raca_id INT
-)
-BEGIN
-    INSERT INTO tb_animal (nome, data_nascimento, sexo, fk_cliente_id, fk_especie_id, fk_raca_id)
-    VALUES (p_nome, p_data_nasc, p_sexo, p_cliente_id, p_especie_id, p_raca_id);
-    
-END//
 -- agendar consulta nova
- CREATE PROCEDURE agendar_consulta(
-    IN p_data_hora DATETIME,
-    IN ENUM('Realizada','Marcada','Cancelada'),
-    IN p_veterianrio INT,
-    IN p_animal INT
- )
-BEGIN
-    INSERT INTO tb_consulta (data_hora, status, fk_animal_id, fk_veterinario_id)
-    VALUES (p_data_hora, p_status, p_animal, p_veterinario);
+CREATE PROCEDURE sp_agendar_consulta(
+	IN animal_id INT,
+    IN veterinario_id INT,
+    IN data DATETIME)
+    BEGIN
+        INSERT INTO tb_consulta(fk_animal_id, fk_veterinario_id, data)
+        VALUES (animal_id, veterinario_id, data);
+    END //
 
-END//
+-- CALL sp_agendar_consulta(/*fk animal*/, /*fk veterinario*/, /*data e hora*/)
 
-    -- POR UMA CALL
-CALL agendar_consult();
 -- historico de um animal especifico
 CREATE PROCEDURE sp_historico_animal(
         IN animal_nome VARCHAR(20))
@@ -61,6 +44,5 @@ BEGIN
 END //
 
 -- CALL historico_animal('');
-    CALL sp_histocio_animal();
 
 DELIMITER ;

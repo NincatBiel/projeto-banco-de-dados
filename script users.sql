@@ -1,5 +1,5 @@
 -- admin
-CREATE USER 'administrador'@'localhost IDENTIFIED BY 'admin123';
+CREATE USER 'administrador'@'localhost' IDENTIFIED BY 'admin123';
 
 GRANT ALL ON clinica_veterinaria.* TO 'administrador'@'localhost';
 
@@ -7,4 +7,4 @@ GRANT ALL ON clinica_veterinaria.* TO 'administrador'@'localhost';
 
 CREATE USER 'atendente'@'localhost' IDENTIFIED BY 'atendente123';
 
-GRANT 
+GRANT EXECUTE ON PROCEDURE clinica_veterinaria.sp_agendar_consulta TO 'atendente'@'localhost';

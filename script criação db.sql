@@ -134,9 +134,9 @@ CONSTRAINT fk_medicamento_med_prescrito FOREIGN KEY (fk_medicamento_id) REFERENC
 
 CREATE TABLE tb_valor(
 valor_id INT PRIMARY KEY AUTO_INCREMENT,
-subtotal DECIMAL(8,2) NOT NULL,
+subtotal DECIMAL(8,2),
 desconto DECIMAL(8,2) NOT NULL,
-total DECIMAL(8,2) NOT NULL,
+total DECIMAL(8,2),
 fk_consulta_id INT NOT NULL,
 fk_servico_id INT,
 CONSTRAINT fk_consulta_valor FOREIGN KEY (fk_consulta_id) REFERENCES tb_consulta(consulta_id),

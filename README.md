@@ -53,3 +53,5 @@ RN011 — Uma prescrição pode possuir vários medicamentos.
 RN012 — Um pagamento não poderá possuir valor menor ou igual a zero.
 RN013 — Uma consulta cancelada não deverá gerar cobrança de procedimento.
 RN014 — O histórico de um animal deverá preservar os atendimentos realizados anteriormente.
+RN015 — Uma consullta só pode gerar um valor final
+RN016 — Um valor final deve ser gerado a partir de uma consulta e de um serviço

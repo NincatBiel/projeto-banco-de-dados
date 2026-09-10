@@ -14,3 +14,5 @@ GRANT EXECUTE ON PROCEDURE clinica_veterinaria.sp_agendar_consulta TO 'atendente
 CREATE USER 'veterinario'@'localhost' IDENTIFIED BY 'vet123';
 
 GRANT EXECUTE ON PROCEDURE clinica_veterinaria.sp_add_consulta TO 'veterinario'@'localhost';
+
+GRANT EXECUTE ON PROCEDURE clinica_veterinaria.sp_add_prescricao TO 'veterinario'@'localhost';

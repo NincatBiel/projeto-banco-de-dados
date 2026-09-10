@@ -56,3 +56,11 @@ RN016 — Um valor final deve ser gerado a partir de uma consulta e de um servi�
 
 Como criar o banco: acesse script criação db.sql
 Como inserir dados: acesse script inserts.sql
+Como executar as consultas: estão divididas em views
+Sendo elas: 
+vw_veterinario_especialidades
+w_consultas_marcadas
+vw_historico_animais_doencas
+vw_consulta_animal
+vw_servicos
+vw_procedimentos

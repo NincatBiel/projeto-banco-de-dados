@@ -2,7 +2,7 @@
 
 -- consultas com animais, veterinarios e os respectivos donos
 -- use clinica_veterinaria;
-CREATE VIEW AS vw_consulta_animal
+CREATE VIEW vw_consulta_animal AS
 SELECT
     a.nome AS 'Animal',
     e.nome AS 'Espécie',
@@ -21,7 +21,7 @@ INNER JOIN tb_especie e
 ORDER BY c.data_hora DESC;
 
 -- mesma coisa da anterior só que só as que consulta.status ta como "a ser realizadas"
-CREATE VIEW AS vw_consultas_marcadas
+CREATE VIEW vw_consultas_marcadas AS
     a.nome AS 'Animal',
     e.nome AS 'Espécie',
     cli.nome AS 'Dono',
@@ -39,7 +39,7 @@ INNER JOIN tb_especie e
 WHERE c.status = 'Marcada';
 
 -- historico do animal, com o animal e as doenças que ele teve anteriormente, ordenando por animal.nome e contendo diagnostico e data da consulta (onde indica quando o diagnostico afoi feito)
-CREATE VIEW AS vw_historico_animais_doencas
+CREATE VIEW vw_historico_animais_doencas AS
 SELECT
     a.nome AS 'Animal',
     d.diagnostico AS 'Diagnostico',
@@ -55,17 +55,18 @@ ORDER BY a.nome ASC;
 -- relação de clientes e quantidade de vezes que trouxeram os animais - Ainda falta ajeitar
 SELECT
     cli.nome AS 'Dono',
-    COUNT(c.consulta_id) AS quantidade_consultas
+    COUNT(c.consulta_id) AS 'Quantidade de vezes'
 FROM tb_cliente cli
 INNER JOIN tb_animal a
     ON cli.cliente_id = a.fk_cliente_id
 INNER JOIN tb_consulta c
     ON a.animal_id = c.animal_id
 GROUP BY cli.cliente_id, cli.nome
-ORDER BY quantidade_consultas DESC;
+ORDER BY 'Quantidade de vezes' DESC;
 
 -- relação de veterinarios e suas respectivas especialidades - erik
-SELECT 
+CREATE VIEW vw_veterinario_especialidades AS
+SELECT
     v.nome AS veterinario,
     e.nome AS especialidade
 FROM tb_vet_especialidade ve
@@ -78,12 +79,14 @@ SELECT
     a.nome AS 'Animal',
     cli.nome AS 'Dono',
     c.data_consulta,
-    c.valor AS 'valor_final'
+    v.total AS 'Valor final'
 FROM tb_consulta c
 INNER JOIN tb_animal a
     ON c.animal_id = a.animal_id
 INNER JOIN tb_cliente cli
     ON a.dono_id = d.dono_id
+INNER JOIN tb_valor v
+ON c.consulta_id = v.fk_consulta_id
 ORDER BY c.data_consulta;
 
 -- quantidade de consultas canceladas? sla como se faria isso, feito.
@@ -104,13 +107,18 @@ MAX(preco) AS 'MAIS CARO',
 MIN(preco) AS 'MAIS BARATO'
 FROM tb_medicamento;
 -- relação de serviços - erik
+CREATE VIEW vw_servicos AS
 SELECT 
 nome AS 'Serviço', 
 descricao AS 'Descrição', 
 valor AS 'Valor' 
 FROM tb_servico;
 -- relação de procedimentos
-SELECT *
+CREATE VIEW vw_servicos AS
+SELECT 
+nome AS 'Procedimento', 
+descricao AS 'Descrição', 
+preco AS 'Valor' 
 FROM tb_procedimento;
 -- quantidade de consultas por cliente
 

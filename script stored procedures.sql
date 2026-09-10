@@ -1,11 +1,10 @@
 DELIMITER //
 -- inserir um cliente novo
-CREATE PROCEDURE sp_cadastrar_cliente
-    @nome VARCHAR(100),
-    @telefone VARCHAR(17),
-    @email VARCHAR(100),
-    @cpf VARCHAR(20)
-    AS
+CREATE PROCEDURE sp_cadastrar_cliente(
+    IN nome VARCHAR(100),
+    IN telefone VARCHAR(17),
+    IN email VARCHAR(100),
+    IN cpf VARCHAR(20))
     BEGIN
         INSERT INTO tb_cliente (nome, telefone, email, cpf)
         VALUES (@nome, @telefone, @email, @cpf);

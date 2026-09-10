@@ -53,9 +53,9 @@ ORDER BY quantidade_consultas DESC;
 SELECT 
     v.nome AS veterinario,
     e.nome AS especialidade
-FROM vet_especialidade ve
-JOIN veterinario v ON v.id_veterinario = ve.id_veterinario
-JOIN especialidade e ON e.id_especialidade = ve.id_especialidade
+FROM tb_vet_especialidade ve
+INNER JOIN tb_veterinario v ON v.veterinario_id = ve.fk_veterinario_id
+INNER JOIN tb_especialidade e ON e.especialidade_id = ve.fk_especialidade_id
 ORDER BY v.nome, e.nome;
 -- consulta + valor final - Ainda falta ajeitar
 SELECT
@@ -82,12 +82,12 @@ FROM servico;
 SELECT 
 MAX(preco) AS 'MAIS CARO',
 MIN(preco) AS 'MAIS BARATO'
-FROM procedimento;
+FROM tb_procedimento;
 -- medicamento mais caro e medicamento mais barato art
 SELECT 
 MAX(preco) AS 'MAIS CARO',
 MIN(preco) AS 'MAIS BARATO'
-FROM medicamento;
+FROM tb_medicamento;
 -- relação de serviços - erik
 SELECT 
 nome AS 'Serviço', 
@@ -96,7 +96,7 @@ valor AS 'Valor'
 FROM tb_servico;
 -- relação de procedimentos
 SELECT *
-FROM procedimento;
+FROM tb_procedimento;
 -- quantidade de consultas por cliente
 
 SELECT 
@@ -114,7 +114,7 @@ ORDER BY 'Quantidade de Consultas' DESC;
 -- quantidade de consultas canceladas (ta dando errado n sei pq) art
 SELECT
  COUNT(*) AS 'CONSULTAS CANCELADAS'
-FROM consulta
+FROM tb_consulta
 WHERE status = "CANCELADO";
 
 -- procedimento mais caro e mais barato(subconsulta)
@@ -132,10 +132,10 @@ c.consulta_id AS 'Consulta',
 a.nome AS 'animal',
 c.data_hora AS 'Data da Consulta',
 v.total AS 'Valor Final'
-FROM consulta c
-INNER JOIN animal a
+FROM tb_consulta c
+INNER JOIN tb_animal a
 ON c.fk_animal_id = a.animal_id
-INNER JOIN valor v
+INNER JOIN tb_valor v
 ON c.consulta_id = v.fk_consulta_id
 ORDER BY c.data_hora;
 
@@ -144,7 +144,7 @@ ORDER BY c.data_hora;
 SELECT
 nome AS 'Medicamento',
 preco AS 'Preço'
-FROM medicamento
+FROM tb_medicamento
 WHERE preco = (SELECT MAX(preco) FROM medicamento)
 OR preco = (SELECT MIN(preco) FROM medicamento);
 

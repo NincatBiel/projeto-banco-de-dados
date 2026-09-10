@@ -2,7 +2,7 @@
 
 -- consultas com animais, veterinarios e os respectivos donos
 -- use clinica_veterinaria;
-
+CREATE VIEW AS vw_consulta_animal
 SELECT
     a.nome AS 'Animal',
     e.nome AS 'Espécie',
@@ -21,10 +21,25 @@ INNER JOIN tb_especie e
 ORDER BY c.data_hora DESC;
 
 -- mesma coisa da anterior só que só as que consulta.status ta como "a ser realizadas"
-SELECT COUNT(*) AS 'CONSULTAS REALIZADAS'
-FROM tb_consulta
-WHERE status = 'realizadas';
+CREATE VIEW AS vw_consultas_marcadas
+    a.nome AS 'Animal',
+    e.nome AS 'Espécie',
+    cli.nome AS 'Dono',
+    v.nome AS 'Veterinario',
+    c.data_hora AS 'Data da consulta'
+FROM tb_consulta c
+INNER JOIN tb_animal a
+    ON c.fk_animal_id = a.animal_id
+INNER JOIN tb_cliente cli
+    ON a.fk_cliente_id = cli.cliente_id
+INNER JOIN tb_veterinario v
+    ON c.fk_veterinario_id = v.veterinario_id
+INNER JOIN tb_especie e
+    ON a.fk_especie_id = e.especie_id
+WHERE c.status = 'Marcada';
+
 -- historico do animal, com o animal e as doenças que ele teve anteriormente, ordenando por animal.nome e contendo diagnostico e data da consulta (onde indica quando o diagnostico afoi feito)
+CREATE VIEW AS vw_historico_animais_doencas
 SELECT
     a.nome AS 'Animal',
     d.diagnostico AS 'Diagnostico',

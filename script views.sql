@@ -1,6 +1,4 @@
 -- consultas com animais, veterinarios e os respectivos donos
-
--- consultas com animais, veterinarios e os respectivos donos
 -- use clinica_veterinaria;
 CREATE VIEW vw_consulta_animal AS
 SELECT
@@ -52,7 +50,7 @@ ON d.fk_consulta_id = c.consulta_id
 WHERE d.diagnostico IS NOT NULL
 ORDER BY a.nome ASC;
 
--- relação de clientes e quantidade de vezes que trouxeram os animais - Ainda falta ajeitar
+-- relação de clientes e quantidade de vezes que trouxeram os animais
 SELECT
     cli.nome AS 'Dono',
     COUNT(c.consulta_id) AS 'Quantidade de vezes'
@@ -161,4 +159,13 @@ ON c.fk_animal_id = a.animal_id
 INNER JOIN tb_valor v
 ON c.consulta_id = v.fk_consulta_id
 ORDER BY c.data_hora;
+
+-- Execução
+SELECT * FROM vw_consulta_animal;
+SELECT * FROM vw_consultas_marcadas;
+SELECT * FROM vw_historico_animais_doencas;
+SELECT * FROM vw_veterinario_especialidades;
+SELECT * FROM vw_procedimentos;
+SELECT * FROM vw_servicos;
+
 
